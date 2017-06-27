@@ -18,6 +18,10 @@
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import moment from 'moment'
+import Vue from 'vue'
+import Resource from 'vue-resource'
+Vue.use(Resource)
+
 export default {
   name: 'tweet',
   props: ['tweet'],
@@ -26,6 +30,17 @@ export default {
   methods: {
     moment: function (date) {
       return moment(date)
+    },
+
+    retweet: function () {
+      // GET /someUrl
+      this.$http.get('http://localhost:8080/retweet', {params: {utilisateur: 'snoopdog', tweet: '3'}, responseType: 'text'}).then(response => {
+        // get body data
+        this.tweets = response.body
+        this.loading = false
+      }, response => {
+         // error callback
+      })
     }
 
   },
