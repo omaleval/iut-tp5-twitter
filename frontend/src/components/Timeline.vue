@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <h1 v-if="loading">Chargement des tweets en cours</h1>
     <ul v-else>
-        <feed :tweets="tweets" :loading="loading"></feed>
+        <feed :tweets="tweets" :loading="loading" @retweeted="retweet"></feed>
     </ul>
 
   </div>
@@ -26,6 +26,11 @@ export default {
   },
 
   methods: {
+    retweet: function (id) {
+      var tweet = this.tweets.find(tweet => id === tweet.id)
+      tweet.retweeters.push({handle: 'johndoe'})
+    },
+
     fetchTweets: function () {
       // GET /someUrl
       this.$http.get('http://localhost:8080/list').then(response => {
