@@ -4,7 +4,7 @@
 
     <ul>
       <li v-for="tweet in tweets" >
-        <tweet :tweet="tweet"/>
+        <feed :tweets="tweets"></feed>
       </li>
     </ul>
 
@@ -13,16 +13,15 @@
 
 
 
-
 <script>
-import Tweet from './Tweet'
+import Feed from './Feed'
 import Vue from 'vue'
 import Resource from 'vue-resource'
 Vue.use(Resource)
 
 export default {
   name: 'hello',
-  components: {Tweet},
+  components: {Feed},
 
   created () {
     this.fetchTweets()
