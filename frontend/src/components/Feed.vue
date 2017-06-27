@@ -19,6 +19,6 @@ import Tweet from './Tweet'
 export default {
   name: 'feed',
   components: {Tweet},
-  props: ['tweets']
+  props: ['tweets', 'loading']
 }
 </script>

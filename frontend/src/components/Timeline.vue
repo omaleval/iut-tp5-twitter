@@ -1,11 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-
-    <ul>
-      <li v-for="tweet in tweets" >
-        <feed :tweets="tweets"></feed>
-      </li>
+    <h1 v-if="loading">Chargement des tweets en cours</h1>
+    <ul v-else>
+        <feed :tweets="tweets" :loading="loading"></feed>
     </ul>
 
   </div>
@@ -33,6 +31,7 @@ export default {
       this.$http.get('http://localhost:8080/list').then(response => {
         // get body data
         this.tweets = response.body
+        this.loading = false
       }, response => {
         // error callback
       })
@@ -41,13 +40,8 @@ export default {
 
   data () {
     return {
-
-      tweets: [
-        { auteur: 'Olivier', contenu: 'Bonjour' },
-        { auteur: 'Ewilan', contenu: 'Bonsoir' },
-        { auteur: 'Président', contenu: 'Je vous ai compris' }
-      ]
-
+      tweets: [],
+      loading: true
     }
   }
 }
