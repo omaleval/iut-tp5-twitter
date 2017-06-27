@@ -5,7 +5,7 @@
       <div class="icons">
         <ul>
           <li class="button"> <icon name="reply"/> </li>
-          <li class="button"> <icon name="retweet"/> </li>
+          <a @click="retweet()"> <li class="button"> <icon name="retweet"/> {{ tweet.retweeters.length }} </li> </a>
           <li class="button"> <icon name="heart"/> </li>
           <li class="button"> <icon name="envelope"/> </li>
         </ul>
@@ -26,9 +26,6 @@ export default {
   methods: {
     moment: function (date) {
       return moment(date)
-    },
-    retweets: function () {
-      return t
     }
 
   },
