@@ -1,7 +1,9 @@
 <template>
   <div class="tweet">
-      <div class="auteur"> <strong>{{ tweet.auteur.prenom }} {{ tweet.auteur.nom }}</strong> <i><span class="handle">@{{ tweet.auteur.handle }}</span></i> - {{ moment(tweet.date).fromNow() }}</div>
+      <div class="auteur"> <strong>{{ tweet.auteur.prenom }} {{ tweet.auteur.nom }}</strong>
+        <i><span class="handle">@{{ tweet.auteur.handle }}</span></i> - {{ moment(tweet.date).fromNow() }}</div>
       <div class="contenu">{{ tweet.contenu }} </div>
+
       <div class="icons">
         <ul>
           <li class="button"> <icon name="reply"/> </li>
@@ -24,7 +26,7 @@ Vue.use(Resource)
 
 export default {
   name: 'tweet',
-  props: ['tweet'],
+  props: ['tweet', 'utilisateur'],
   components: {Icon},
 
   methods: {

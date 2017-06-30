@@ -2,7 +2,7 @@
   <div class="feed">
     <ul>
       <li v-for="tweet in tweets" class="tweet">
-        <tweet :tweet="tweet" @retweeted="retweet"></tweet>
+        <tweet :tweet="tweet" :utilisateur="utilisateur" @retweeted="retweet"/>
       </li>
     </ul>
 
@@ -17,7 +17,7 @@ import Tweet from './Tweet'
 export default {
   name: 'feed',
   components: {Tweet},
-  props: ['tweets', 'loading'],
+  props: ['tweets', 'loading', 'utilisateur'],
 
   methods: {
     retweet: function (id) {
