@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ this.utilisateur ? 'Bonjour ' + this.utilisateur + ' ! ' : 'Identifiez-vous !' }}</h1>
-    <utilisateurs :utilisateurs="utilisateurs" @userChanged="onChange"/>
+    <utilisateurs :utilisateurs="utilisateurs" @utilisateur="onChange"/>
 
     <h1 v-if="loading">Chargement des tweets en cours</h1>
     <div v-else>
@@ -44,6 +44,8 @@ export default {
     fetchUtilisateurs: function () {
       this.$http.get('http://localhost:8080/utilisateurs').then(response => {
         this.utilisateurs = response.body
+        this.loading = false
+        this.onChange(this.utilisateurs[0].handle)
       }, response => {
         // error callback
       })

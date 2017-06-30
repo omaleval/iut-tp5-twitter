@@ -7,7 +7,19 @@
       <div class="icons">
         <ul>
           <li class="button"> <icon name="reply"/> </li>
-          <a @click="retweet()"> <li class="button"> <icon name="retweet"/> {{ tweet.retweeters.length }} </li> </a>
+
+          <li class="button" v-if="retweetable()">
+            <a @click="retweet()">
+              <icon name="retweet"/>
+               <span> {{ tweet.retweeters.length }} </span>
+            </a>
+          </li>
+
+          <li class="button" v-else>
+            <icon name="retweet"/>
+            <span> {{ tweet.retweeters.length }} </span>
+          </li>
+
           <li class="button"> <icon name="heart"/> </li>
           <li class="button"> <icon name="envelope"/> </li>
         </ul>
@@ -34,10 +46,15 @@ export default {
       return moment(date)
     },
 
+    retweetable: function () {
+      if (this.tweet.auteur.handle === this.utilisateur) {
+        return false
+      }
+      return true
+    },
+
     retweet: function () {
-      // GET /someUrl
       this.$http.get('http://localhost:8080/retweet', {params: {utilisateur: this.utilisateur, tweet: this.tweet.id}, responseType: 'text'}).then(response => {
-        // get body data
         this.tweets = response.body
         this.loading = false
         this.$emit('retweeted', this.tweet.id)

@@ -26,6 +26,7 @@ export default {
 
   methods: {
     onChange: function (handle) {
+      this.utilisateur = handle
       this.$emit('userChanged', handle)
     }
   }
