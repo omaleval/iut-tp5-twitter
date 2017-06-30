@@ -36,7 +36,7 @@ export default {
 
     retweet: function () {
       // GET /someUrl
-      this.$http.get('http://localhost:8080/retweet', {params: {utilisateur: 'snoopdog', tweet: this.tweet.id}, responseType: 'text'}).then(response => {
+      this.$http.get('http://localhost:8080/retweet', {params: {utilisateur: this.utilisateur, tweet: this.tweet.id}, responseType: 'text'}).then(response => {
         // get body data
         this.tweets = response.body
         this.loading = false

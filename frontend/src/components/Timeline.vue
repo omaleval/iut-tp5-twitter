@@ -65,6 +65,7 @@ export default {
     return {
       tweets: [],
       loading: true,
+      utilisateur: null,
       utilisateurs: []
     }
   }
